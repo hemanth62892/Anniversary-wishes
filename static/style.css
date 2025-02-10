@@ -26,10 +26,10 @@ img {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     background-color: #800000; /* Dark red background */
-    z-index: 999;
+    z-index: 9999;
 }
 
 .curtain {
@@ -51,12 +51,12 @@ img {
     transform: translateX(0);
 }
 
-/* This class will be added when clicking to open the curtain */
-.open .curtain.left {
+/* Open curtain effect */
+.curtain-container.open .curtain.left {
     transform: translateX(-100%);
 }
 
-.open .curtain.right {
+.curtain-container.open .curtain.right {
     transform: translateX(100%);
 }
 
@@ -68,6 +68,7 @@ img {
     position: absolute;
     text-align: center;
     animation: blink 1s infinite alternate;
+    z-index: 10000;
 }
 
 /* Blinking effect for Click Here */
