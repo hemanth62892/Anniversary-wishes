@@ -43,16 +43,16 @@
                 // Hide the "Click Here" message
                 clickMessage.style.display = "none";
 
-                // Open the curtain
+                // Open the curtain with animation
                 curtain.classList.add("open");
 
                 // Start music
                 audio.play().catch(error => console.log("Autoplay blocked:", error));
 
-                // Remove the red screen after the curtain opens (2 seconds)
+                // Show the anniversary message after the curtain opens (2 seconds)
                 setTimeout(() => {
-                    curtain.style.display = "none"; // Hide the curtain
-                    messageContainer.classList.remove("hidden"); // Show the message
+                    curtain.style.display = "none"; // Hide the curtain smoothly
+                    messageContainer.classList.remove("hidden"); // Reveal the anniversary message
                 }, 2000);
             }
 
