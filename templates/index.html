@@ -35,22 +35,25 @@
         document.addEventListener("DOMContentLoaded", function () {
             let audio = document.getElementById("bg-music");
 
-            // Try playing music when user clicks (for autoplay fix)
-            document.body.addEventListener("click", function () {
+            // Function to start music when curtain opens
+            function playMusic() {
                 if (audio.paused) {
-                    audio.play().catch(error => console.log("Autoplay failed:", error));
+                    audio.play().catch(error => console.log("Autoplay blocked:", error));
                 }
-            });
+            }
 
-            // Curtain opening animation
+            // Ensure music starts when the curtain begins opening
             setTimeout(() => {
+                playMusic(); // Start music when the curtain starts opening
                 document.querySelector(".curtain-container").classList.add("open");
+
                 setTimeout(() => {
                     document.querySelector(".container").classList.remove("hidden");
-                    // Play music after content appears
-                    audio.play().catch(error => console.log("Autoplay blocked:", error));
                 }, 3000); // Show content after 3s curtain animation
             }, 2000); // Wait 2s before opening the curtain
+
+            // Extra: Allow manual start if autoplay is blocked
+            document.body.addEventListener("click", playMusic);
         });
     </script>
 
