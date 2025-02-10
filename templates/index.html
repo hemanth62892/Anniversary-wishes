@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    
+
+    <!-- Tap Here message -->
+    <div id="tap-message" class="tap-message">Tap Here</div>
+
     <div class="curtain-container">
         <div class="curtain left"></div>
         <div class="curtain right"></div>
@@ -24,7 +27,6 @@
         
         <div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️</div>
 
-        <!-- Updated Audio Code -->
         <audio id="bg-music" loop>
             <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio tag.
@@ -34,26 +36,26 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let audio = document.getElementById("bg-music");
+            let tapMessage = document.getElementById("tap-message");
 
-            // Function to start music when curtain opens
-            function playMusic() {
-                if (audio.paused) {
-                    audio.play().catch(error => console.log("Autoplay blocked:", error));
-                }
-            }
+            function startCelebration() {
+                // Hide "Tap Here" message
+                tapMessage.style.display = "none";
 
-            // Ensure music starts when the curtain begins opening
-            setTimeout(() => {
-                playMusic(); // Start music when the curtain starts opening
+                // Start music
+                audio.play().catch(error => console.log("Autoplay blocked:", error));
+
+                // Open the curtain
                 document.querySelector(".curtain-container").classList.add("open");
 
+                // Show the anniversary message after 3 seconds
                 setTimeout(() => {
                     document.querySelector(".container").classList.remove("hidden");
-                }, 3000); // Show content after 3s curtain animation
-            }, 2000); // Wait 2s before opening the curtain
+                }, 3000);
+            }
 
-            // Extra: Allow manual start if autoplay is blocked
-            document.body.addEventListener("click", playMusic);
+            // Wait for user tap to start
+            document.body.addEventListener("click", startCelebration, { once: true });
         });
     </script>
 
