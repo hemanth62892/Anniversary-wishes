@@ -1,15 +1,18 @@
+/* General Styles */
 body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #ffe4e1;
     animation: fadeIn 2s ease-in-out;
-    overflow: hidden; /* Prevent scrolling during animation */
+    overflow: hidden; /* Prevent scroll during animation */
 }
 
+/* Hide content initially */
 .hidden {
     display: none;
 }
 
+/* Image Styling */
 img {
     width: 60%;
     max-width: 500px;
@@ -18,7 +21,26 @@ img {
     animation: fadeIn 3s;
 }
 
-/* Curtain Container */
+/* Click Here Message */
+.click-message {
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    animation: blink 1s infinite alternate;
+    z-index: 10000;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Curtain Animation */
 .curtain-container {
     position: fixed;
     top: 0;
@@ -26,21 +48,16 @@ img {
     width: 100vw;
     height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #800000; /* Dark red background */
     z-index: 9999;
-    overflow: hidden;
 }
 
-/* Curtain Effect */
 .curtain {
     width: 50%;
     height: 100%;
     background: #800000;
     position: absolute;
     top: 0;
-    transition: transform 2s ease-in-out; /* Smooth slide effect */
+    transition: transform 2.5s ease-in-out; /* Smooth sliding effect */
 }
 
 .curtain.left {
@@ -53,30 +70,13 @@ img {
     transform: translateX(0);
 }
 
-/* When clicked, curtains slide away */
+/* Open Curtain Animation */
 .curtain-container.open .curtain.left {
     transform: translateX(-100%);
 }
 
 .curtain-container.open .curtain.right {
     transform: translateX(100%);
-}
-
-/* Click Here message */
-.click-message {
-    font-size: 28px;
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    text-align: center;
-    animation: blink 1s infinite alternate;
-    z-index: 10000;
-}
-
-/* Blinking effect for Click Here */
-@keyframes blink {
-    0% { opacity: 1; }
-    100% { opacity: 0.6; }
 }
 
 /* Heart Animation */
