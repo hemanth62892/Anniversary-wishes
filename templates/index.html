@@ -7,11 +7,16 @@
     <link rel="stylesheet" href="{{ url_for('static_files', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
+    
+    <div class="curtain-container">
+        <div class="curtain left"></div>
+        <div class="curtain right"></div>
+    </div>
+
+    <div class="container hidden">  <!-- Hidden initially -->
         <h1>❤️ Happy Anniversary! ❤️</h1>
-        <h2>Mama & Atha ❤️</h2>
-        <p>May your Love continue to grow stronger with each passing year. 
-            I pray for your happiness enjoy in everything you do together ❤️</p>
+        <h2>Mama Atha 💖</h2>
+        <p>May your Love continue to grow stronger with each passing year. I pray for your happiness and joy in everything you do together ❤️</p>
         
         <p class="signature">- With love, Hemanth 💕</p>
         
@@ -24,5 +29,17 @@
             Your browser does not support the audio tag.
         </audio>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.querySelector(".curtain-container").classList.add("open");
+                setTimeout(() => {
+                    document.querySelector(".container").classList.remove("hidden");
+                }, 3000); // Show content after 3s curtain animation
+            }, 2000); // Wait 2s before opening the curtain
+        });
+    </script>
+
 </body>
 </html>
