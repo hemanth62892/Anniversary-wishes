@@ -3,40 +3,55 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffe4e1;
     animation: fadeIn 2s ease-in-out;
+    overflow: hidden; /* Prevent scroll during animation */
 }
 
-h1 {
-    font-size: 3em;
-    color: #d63384;
-    animation: bounce 1.5s infinite alternate;
+.hidden {
+    display: none;
 }
 
-p {
-    font-size: 1.5em;
-    color: #6a0572;
+/* Curtain Animation */
+.curtain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 999;
 }
 
-img {
-    width: 60%;
-    max-width: 500px;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 3s;
+.curtain {
+    width: 50%;
+    height: 100%;
+    background: #800000;
+    position: absolute;
+    top: 0;
+    transition: transform 3s ease-in-out; /* Curtain opens over 3 seconds */
 }
 
+.curtain.left {
+    left: 0;
+    transform: translateX(0);
+}
+
+.curtain.right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.curtain-container.open .curtain.left {
+    transform: translateX(-100%);
+}
+
+.curtain-container.open .curtain.right {
+    transform: translateX(100%);
+}
+
+/* Heart Animation */
 .hearts {
     font-size: 2em;
     animation: float 2s infinite alternate;
-}
-
-@keyframes bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
 }
 
 @keyframes float {
