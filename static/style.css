@@ -2,7 +2,7 @@
 body {
     text-align: center;
     font-family: Arial, sans-serif;
-    background-color: #e1ffe4;
+    background-color: #90EE90;
     animation: fadeIn 2s ease-in-out;
     overflow: hidden; /* Prevent scroll during animation */
 }
