@@ -8,14 +8,17 @@
 </head>
 <body>
 
-    <!-- Curtain with Click Here Message -->
-    <div class="curtain-container" id="curtain">
+    <!-- Tap Here message -->
+    <div id="click-message" class="click-message">Click Here</div>
+
+    <!-- Curtain Animation -->
+    <div class="curtain-container">
         <div class="curtain left"></div>
         <div class="curtain right"></div>
-        <div class="click-message" id="click-message">Click Here</div>
     </div>
 
-    <div class="container hidden" id="message-container">  <!-- Hidden initially -->
+    <!-- Main Anniversary Message (Initially Hidden) -->
+    <div class="container hidden">
         <h1>❤️ Happy Anniversary! ❤️</h1>
         <h2>Mama Atha 💖</h2>
         <p>May your Love continue to grow stronger with each passing year. I pray for your happiness and joy in everything you do together ❤️</p>
@@ -35,29 +38,24 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let audio = document.getElementById("bg-music");
-            let curtain = document.getElementById("curtain");
-            let clickMessage = document.getElementById("click-message");
-            let messageContainer = document.getElementById("message-container");
+            let tapMessage = document.getElementById("click-message");
+            let curtainContainer = document.querySelector(".curtain-container");
+            let messageContainer = document.querySelector(".container");
 
             function startCelebration() {
-                // Hide the "Click Here" message
-                clickMessage.style.display = "none";
+                tapMessage.style.display = "none";  // Hide "Click Here" message
 
-                // Open the curtain with animation
-                curtain.classList.add("open");
+                curtainContainer.classList.add("open"); // Open the curtain smoothly
 
-                // Start music
-                audio.play().catch(error => console.log("Autoplay blocked:", error));
-
-                // Show the anniversary message after the curtain opens (2 seconds)
                 setTimeout(() => {
-                    curtain.style.display = "none"; // Hide the curtain smoothly
-                    messageContainer.classList.remove("hidden"); // Reveal the anniversary message
-                }, 2000);
+                    messageContainer.classList.remove("hidden"); // Reveal message after animation
+                }, 2500);  // Sync with the curtain animation time
+
+                audio.play().catch(error => console.log("Autoplay blocked:", error)); // Play music
             }
 
-            // Wait for user click to start
-            curtain.addEventListener("click", startCelebration, { once: true });
+            // Wait for user tap on the curtain to start
+            curtainContainer.addEventListener("click", startCelebration, { once: true });
         });
     </script>
 
