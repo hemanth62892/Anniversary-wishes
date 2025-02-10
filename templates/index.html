@@ -8,12 +8,11 @@
 </head>
 <body>
 
-    <!-- Tap Here message -->
-    <div id="tap-message" class="tap-message">Tap Here</div>
-
-    <div class="curtain-container">
+    <!-- Curtain with Click Here Message -->
+    <div class="curtain-container" id="curtain">
         <div class="curtain left"></div>
         <div class="curtain right"></div>
+        <div class="click-message">Click Here</div>
     </div>
 
     <div class="container hidden">  <!-- Hidden initially -->
@@ -36,17 +35,14 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             let audio = document.getElementById("bg-music");
-            let tapMessage = document.getElementById("tap-message");
+            let curtain = document.getElementById("curtain");
 
             function startCelebration() {
-                // Hide "Tap Here" message
-                tapMessage.style.display = "none";
+                // Remove the curtain effect
+                curtain.classList.add("open");
 
                 // Start music
                 audio.play().catch(error => console.log("Autoplay blocked:", error));
-
-                // Open the curtain
-                document.querySelector(".curtain-container").classList.add("open");
 
                 // Show the anniversary message after 3 seconds
                 setTimeout(() => {
@@ -54,8 +50,8 @@
                 }, 3000);
             }
 
-            // Wait for user tap to start
-            document.body.addEventListener("click", startCelebration, { once: true });
+            // Wait for user click to start
+            curtain.addEventListener("click", startCelebration, { once: true });
         });
     </script>
 
