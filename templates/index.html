@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary!</title>
-    <link rel="stylesheet" href="{{ url_for('static_files', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     
@@ -20,22 +20,35 @@
         
         <p class="signature">- With love, Hemanth 💕</p>
         
-        <img src="{{ url_for('static_files', filename='anniversary.jpg') }}" alt="Anniversary Image">
+        <img src="{{ url_for('static', filename='anniversary.jpg') }}" alt="Anniversary Image">
         
         <div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️</div>
 
-        <audio autoplay loop>
-            <source src="{{ url_for('static_files', filename='music.mp3') }}" type="audio/mpeg">
+        <!-- Updated Audio Code -->
+        <audio id="bg-music" loop>
+            <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio tag.
         </audio>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            let audio = document.getElementById("bg-music");
+
+            // Try playing music when user clicks (for autoplay fix)
+            document.body.addEventListener("click", function () {
+                if (audio.paused) {
+                    audio.play().catch(error => console.log("Autoplay failed:", error));
+                }
+            });
+
+            // Curtain opening animation
             setTimeout(() => {
                 document.querySelector(".curtain-container").classList.add("open");
                 setTimeout(() => {
                     document.querySelector(".container").classList.remove("hidden");
+                    // Play music after content appears
+                    audio.play().catch(error => console.log("Autoplay blocked:", error));
                 }, 3000); // Show content after 3s curtain animation
             }, 2000); // Wait 2s before opening the curtain
         });
