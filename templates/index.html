@@ -12,10 +12,10 @@
     <div class="curtain-container" id="curtain">
         <div class="curtain left"></div>
         <div class="curtain right"></div>
-        <div class="click-message">Click Here</div>
+        <div class="click-message" id="click-message">Click Here</div>
     </div>
 
-    <div class="container hidden">  <!-- Hidden initially -->
+    <div class="container hidden" id="message-container">  <!-- Hidden initially -->
         <h1>❤️ Happy Anniversary! ❤️</h1>
         <h2>Mama Atha 💖</h2>
         <p>May your Love continue to grow stronger with each passing year. I pray for your happiness and joy in everything you do together ❤️</p>
@@ -36,17 +36,23 @@
         document.addEventListener("DOMContentLoaded", function () {
             let audio = document.getElementById("bg-music");
             let curtain = document.getElementById("curtain");
+            let clickMessage = document.getElementById("click-message");
+            let messageContainer = document.getElementById("message-container");
 
             function startCelebration() {
-                // Remove the curtain effect
+                // Hide the "Click Here" message
+                clickMessage.style.display = "none";
+
+                // Open the curtain
                 curtain.classList.add("open");
 
                 // Start music
                 audio.play().catch(error => console.log("Autoplay blocked:", error));
 
-                // Show the anniversary message after 2 seconds
+                // Remove the red screen after the curtain opens (2 seconds)
                 setTimeout(() => {
-                    document.querySelector(".container").classList.remove("hidden");
+                    curtain.style.display = "none"; // Hide the curtain
+                    messageContainer.classList.remove("hidden"); // Show the message
                 }, 2000);
             }
 
