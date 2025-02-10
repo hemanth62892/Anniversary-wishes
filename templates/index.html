@@ -4,20 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Anniversary!</title>
-    <link rel="stylesheet" href="{{ url_for('static_files', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>💖 Happy Anniversary! 💖</h1>
-        <p>Wishing you both a lifetime of love and happiness! 💑🎉</p>
-        <img src="{{ url_for('static_files', filename='anniversary.jpg') }}" alt="Anniversary Image">
+
+    <!-- Tap Here message -->
+    <div id="click-message" class="click-message">Click Here</div>
+
+    <!-- Curtain Animation -->
+    <div class="curtain-container">
+        <div class="curtain left"></div>
+        <div class="curtain right"></div>
+    </div>
+
+    <!-- Main Anniversary Message (Initially Hidden) -->
+    <div class="container hidden">
+        <h1>❤️ Happy Anniversary! ❤️</h1>
+        <h2>Mama Atha 💖</h2>
+        <p>May your Love continue to grow stronger with each passing year. I pray for your happiness and joy in everything you do together ❤️</p>
+        
+        <p class="signature">- With love, Hemanth 💕</p>
+        
+        <img src="{{ url_for('static', filename='anniversary.jpg') }}" alt="Anniversary Image">
         
         <div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️</div>
 
-        <audio autoplay loop>
-            <source src="{{ url_for('static_files', filename='music.mp3') }}" type="audio/mpeg">
+        <audio id="bg-music" loop>
+            <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
             Your browser does not support the audio tag.
         </audio>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let audio = document.getElementById("bg-music");
+            let tapMessage = document.getElementById("click-message");
+            let curtainContainer = document.querySelector(".curtain-container");
+            let messageContainer = document.querySelector(".container");
+
+            function startCelebration() {
+                tapMessage.style.display = "none";  // Hide "Click Here" message
+
+                curtainContainer.classList.add("open"); // Open the curtain smoothly
+
+                setTimeout(() => {
+                    messageContainer.classList.remove("hidden"); // Reveal message after animation
+                }, 2500);  // Sync with the curtain animation time
+
+                audio.play().catch(error => console.log("Autoplay blocked:", error)); // Play music
+            }
+
+            // Wait for user tap on the curtain to start
+            curtainContainer.addEventListener("click", startCelebration, { once: true });
+        });
+    </script>
+
 </body>
 </html>
