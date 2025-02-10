@@ -30,7 +30,6 @@ img {
     align-items: center;
     background-color: #800000; /* Dark red background */
     z-index: 999;
-    transition: transform 2s ease-in-out;
 }
 
 .curtain {
@@ -39,7 +38,7 @@ img {
     background: #800000;
     position: absolute;
     top: 0;
-    transition: transform 3s ease-in-out; /* Curtain opens over 3 seconds */
+    transition: transform 2s ease-in-out; /* Smooth transition */
 }
 
 .curtain.left {
@@ -52,15 +51,16 @@ img {
     transform: translateX(0);
 }
 
-.curtain-container.open .curtain.left {
+/* This class will be added when clicking to open the curtain */
+.open .curtain.left {
     transform: translateX(-100%);
 }
 
-.curtain-container.open .curtain.right {
+.open .curtain.right {
     transform: translateX(100%);
 }
 
-/* Click Here message on curtain */
+/* Click Here message */
 .click-message {
     font-size: 28px;
     color: white;
